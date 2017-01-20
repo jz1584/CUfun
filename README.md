@@ -1,2 +1,2 @@
 #### CUfun
-This git repository is for temp backup
+Temp git rep

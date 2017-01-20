@@ -1,3 +1,0 @@
-#### CUfun
-temp git repository
-
