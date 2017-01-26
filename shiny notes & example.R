@@ -14,3 +14,6 @@ library(shiny)
 
 ?observe
 # It doesn't yeild result & can't use as input for other reactive expression. 
+
+
+
