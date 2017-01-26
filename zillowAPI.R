@@ -55,16 +55,20 @@ ZestimateCheck<-function(StreetAddress,citystatezip,zws_id){
   }
   #main:
   results<-GetSearchResults(address =StreetAddress,citystatezip = citystatezip,zws_id = zws_id )
+  if(is.null(results$response)){
+  return(NULL)}
+  
+  else{
   results2list<-xmlToList(results$response[['results']])
   finalResult <- apply(results2list, MAR=2, extractZillowXML)
   df <- as.data.frame(do.call(rbind, lapply(finalResult, unlist)), 
                         row.names=seq_len(length(finalResult)))
   return(df)
-  
+  }
 }
 
 #testing:
-valueZestimateCheck(StreetAddress ='120 East 7th Street apt5A',citystatezip = '10009', zws_id ='your id')
+ZestimateCheck(StreetAddress ='sdfdf',citystatezip = '10009', zws_id ='your id')
 
 
 
