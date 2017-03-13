@@ -19,18 +19,26 @@ names(HomePrice)<-HomePrice[1,]
 HomePrice[-c(1:2),]
 
 
+
+HP<-matrix(NA,nrow=1,ncol = 5)#create a empty matrix 
 for (i in c('Kings_County','Queens_County','New_York_County','Bronx_County','Richmond_County')){
+  
   url<-paste0("https://www.trulia.com/home_prices/New_York/",i,'-heat_map/')
   rhtml<-read_html(url)
   HomePrice<-rhtml%>% html_nodes(xpath = '//*[@id="heatmap_table"]/table') %>% html_table()
   HomePrice<-HomePrice[[1]]
   names(HomePrice)<-HomePrice[1,]
   HomePrice<-HomePrice[-c(1:2),]
+  
+  HomePrice$County<-i
+  HP<-rbind(HP,as.matrix(HomePrice))
+  
   print('-------------------------------------Stop Line\n')
   write.csv(HomePrice,file = paste('data/',i,'(',names(HomePrice)[3],').csv'))
 }
 
-
+HP<-as.data.frame(HP)
+write.csv(HP,file = paste('data/All',names(HP)[4],'.csv'),row.names = F)
 
 
 
