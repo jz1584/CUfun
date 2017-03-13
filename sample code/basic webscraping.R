@@ -1,6 +1,6 @@
 
 library(rvest)
-#example: https://www.r-bloggers.com/using-rvest-to-scrape-an-html-table/
+#Inspired by: https://www.r-bloggers.com/using-rvest-to-scrape-an-html-table/
 
 #Extract properties price table data from trulia 
 
@@ -40,6 +40,56 @@ for (i in c('Kings_County','Queens_County','New_York_County','Bronx_County','Ric
 
 HP<-as.data.frame(HP)
 write.csv(HP,file = paste('data/All',names(HP)[4],'.csv'),row.names = F)
+
+
+
+
+
+# #example
+# library(rvest)
+# library(tidyr)
+# 
+# page <- read_html("https://www.zillow.com/homes/11223_rb/")
+# 
+# houses <- page %>%
+#   html_nodes(".photo-cards li article")
+# 
+# z_id <- houses %>% html_attr("id")
+# 
+# address <- houses %>%
+#   html_node(".zsg-photo-card-address") %>%
+#   html_text()
+# 
+# price <- houses %>%
+#   html_node(".zsg-photo-card-price") %>%
+#   html_text() %>%
+#   readr::parse_number()
+# 
+# params <- houses %>%
+#   html_node(".zsg-photo-card-info") %>%
+#   html_text() %>%
+#   strsplit("\u00b7")
+# 
+# beds <- params %>% purrr::map_chr(1) %>% readr::parse_number()
+# baths <- params %>% purrr::map_chr(2) %>% readr::parse_number() #will cause error if there is any missing
+# house_area <- params %>% purrr::map_chr(3) %>% readr::parse_number()
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
