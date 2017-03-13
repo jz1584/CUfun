@@ -11,17 +11,18 @@ library(rvest)
 # bronxUrl<-read_html('https://www.trulia.com/home_prices/New_York/Bronx_County-heat_map/')
 # statenislandUrl<-read_html('https://www.trulia.com/home_prices/New_York/Richmond_County-heat_map/')
 
+#sample 
+# HomePrice<-queensUrl %>% html_nodes(xpath = '//*[@id="heatmap_table"]/table') %>% html_table()
+# 
+# HomePrice<-HomePrice[[1]]
+# names(HomePrice)<-HomePrice[1,]
+# HomePrice[-c(1:2),]
 
-HomePrice<-queensUrl %>% html_nodes(xpath = '//*[@id="heatmap_table"]/table') %>% html_table()
-
-HomePrice<-HomePrice[[1]]
-names(HomePrice)<-HomePrice[1,]
-HomePrice[-c(1:2),]
 
 
 
 HP<-matrix(NA,nrow=1,ncol = 5)#create a empty matrix 
-for (i in c('Kings_County','Queens_County','New_York_County','Bronx_County','Richmond_County')){
+for (i in c('Kings_County','Queens_County','New_York_County','Bronx_County','Richmond_County','Nassau_County','Suffolk_County')){
   
   url<-paste0("https://www.trulia.com/home_prices/New_York/",i,'-heat_map/')
   rhtml<-read_html(url)
